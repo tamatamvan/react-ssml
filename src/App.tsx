@@ -8,7 +8,7 @@ import { useSpeech } from './lib/useSpeech';
 
 function App() {
   const [sentences, setSentences] = useState<Array<string>>([]);
-  const { currentWordRange, currentSentenceIdx, play, pause } =
+  const { currentWordRange, currentSentenceIdx, play, pause, playbackState } =
     useSpeech(sentences);
 
   const fetchData = async () => {
@@ -31,7 +31,12 @@ function App() {
         />
       </div>
       <div>
-        <Controls play={play} pause={pause} />
+        <Controls
+          play={play}
+          pause={pause}
+          loadNewContent={fetchData}
+          state={playbackState}
+        />
       </div>
     </div>
   );
