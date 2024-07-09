@@ -27,11 +27,11 @@ const trimSpeakTag = (content: string) => {
   return content.replace('<speak>', '').replace('</speak>', '');
 };
 
-const splitSentences = (content: string) => {
-  return content
-    .replaceAll('<s>', '')
-    .split('</s>')
-    .filter((sentence) => !!sentence);
+const splitSentences = (trimedContent: string) => {
+  return trimedContent
+    .split('<s>')
+    .filter((str) => !!str)
+    .map((str) => str.substring(0, str.indexOf('</s>')));
 };
 
 const parseContentIntoSentences = (content: string): Array<string> => {
