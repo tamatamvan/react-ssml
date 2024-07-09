@@ -16,5 +16,15 @@ export const CurrentlyReading = ({
   currentSentenceIdx: number;
   sentences: string[];
 }) => {
-  return <div data-testid="currently-reading"></div>;
+  return (
+    <div data-testid="currently-reading">
+      {sentences.map((sentence, idx) => (
+        <p key={`sentence-${idx}`}>
+          {sentence.split(' ').map((word) => (
+            <span>{word} </span>
+          ))}
+        </p>
+      ))}
+    </div>
+  );
 };

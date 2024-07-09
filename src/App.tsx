@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <h1>Text to speech</h1>
       <div>
-        <CurrentlyReading />
+        <CurrentlyReading sentences={sentences} />
       </div>
       <div>
         <Controls />
