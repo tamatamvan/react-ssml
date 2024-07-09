@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { PlayingState } from './speech';
+import { PlayingState, createSpeechEngine } from './speech';
 
 /*
   @description
@@ -10,6 +10,7 @@ import { PlayingState } from './speech';
   This hook should return react friendly controls for playing, and pausing audio as well as provide information about
   the currently read word and sentence
 */
+
 const useSpeech = (sentences: Array<string>) => {
   const [currentSentenceIdx, setCurrentSentenceIdx] = useState(0);
   const [currentWordRange, setCurrentWordRange] = useState<[number, number]>([
@@ -18,8 +19,20 @@ const useSpeech = (sentences: Array<string>) => {
 
   const [playbackState, setPlaybackState] = useState<PlayingState>('paused');
 
-  const play = () => {};
-  const pause = () => {};
+  const play = () => {
+    setPlaybackState('playing');
+  };
+  const pause = () => {
+    setPlaybackState('paused');
+  };
+
+  const speechEngine = createSpeechEngine({
+    onBoundary: (e) => console.log('on boundary'),
+    onStateUpdate: (state) => setPlaybackState(state),
+    onEnd: (e) => {
+      console.log('end');
+    },
+  });
 
   return {
     currentSentenceIdx,
