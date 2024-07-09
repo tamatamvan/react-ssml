@@ -19,7 +19,10 @@ export const CurrentlyReading = ({
   return (
     <div data-testid="currently-reading">
       {sentences.map((sentence, idx) => (
-        <p key={`sentence-${idx}`}>
+        <p
+          key={`sentence-${idx}`}
+          data-testid={currentSentenceIdx === idx ? 'current-sentence' : ''}
+        >
           {sentence.split(' ').map((word) => (
             <span>{word} </span>
           ))}

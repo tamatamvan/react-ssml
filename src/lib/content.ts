@@ -30,8 +30,8 @@ const trimSpeakTag = (content: string) => {
 const splitSentences = (trimedContent: string) => {
   return trimedContent
     .split('<s>')
-    .filter((str) => !!str)
-    .map((str) => str.substring(0, str.indexOf('</s>')));
+    .map((str) => str.substring(0, str.indexOf('</s>')))
+    .filter((str) => !!str);
 };
 
 const parseContentIntoSentences = (content: string): Array<string> => {
