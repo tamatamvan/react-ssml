@@ -22,7 +22,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1>{sentences[currentSentenceIdx]}</h1>
       <div>
         <CurrentlyReading
           currentSentenceIdx={currentSentenceIdx}

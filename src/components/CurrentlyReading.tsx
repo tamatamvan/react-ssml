@@ -16,8 +16,19 @@ export const CurrentlyReading = ({
   currentSentenceIdx: number;
   sentences: string[];
 }) => {
+  const currentWord = sentences[currentSentenceIdx]
+    ?.slice(...currentWordRange)
+    .trim();
+
   return (
-    <div data-testid="currently-reading">
+    <div className="currently-reading">
+      <h1 className="currently-reading-text">
+        {sentences[currentSentenceIdx]?.split(' ').map((word) => (
+          <span className={currentWord === word ? 'current-word' : ''}>
+            {word}{' '}
+          </span>
+        ))}
+      </h1>
       {sentences.map((sentence, idx) => (
         <p
           key={`sentence-${idx}`}
